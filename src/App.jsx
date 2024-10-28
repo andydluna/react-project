@@ -5,6 +5,8 @@ import { YourClientSecret } from './.credentials';
 import { Buffer } from 'buffer';
 import Search from './components/search.jsx';
 import Song from './components/song.jsx';
+import WebPlayback from './components/webplayback.jsx';
+import Login from './components/login.jsx';
 
 function App() {
   const client_id = YourClientId;
@@ -52,6 +54,7 @@ function App() {
   return (
     <div>
       <h1>Mood Based Player</h1>
+      {/* { (token === '') ? <Login/> : <WebPlayback token={token} /> }*/}
       <Search onSearch={searchTracks} />
       <div className="songs">
         {tracks.map((track) => (
