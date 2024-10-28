@@ -1,11 +1,16 @@
 import './App.css';
+import { useState, useEffect } from 'react';
 import { YourClientId } from './.credentials';
 import { YourClientSecret } from './.credentials';
 import { Buffer } from 'buffer';
+import Search from './components/search.jsx';
+import Song from './components/song.jsx';
 
 function App() {
   const client_id = YourClientId;
   const client_secret = YourClientSecret;
+  const [accessToken, setAccessToken] = useState('');
+  const [tracks, setTracks] = useState([]);
 
   async function getToken() {
     const response = await fetch('https://accounts.spotify.com/api/token', {
@@ -21,13 +26,39 @@ function App() {
       },
     });
 
-    return await response.json();
+    const data = await response.json();
+    return data.access_token;
   }
 
+  const searchTracks = async (query) => {
+    try {
+      const response = await fetch(
+        `https://api.spotify.com/v1/search?q=${query}&type=track`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      const data = await response.json();
+      setTracks(data.tracks.items);
+    } catch (error) {
+      console.error('Error fetching tracks:', error);
+    }
+  };
+
+  getToken().then((res) => setAccessToken(res));
+
   return (
-    <>
-      <h1>Hello world!</h1>
-    </>
+    <div>
+      <h1>Mood Based Player</h1>
+      <Search onSearch={searchTracks} />
+      <div className="songs">
+        {tracks.map((track) => (
+          <Song track={track} key={track.id}></Song>
+        ))}
+      </div>
+    </div>
   );
 }
 
