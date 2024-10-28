@@ -1,18 +1,31 @@
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
+import { YourClientId } from './.credentials';
+import { YourClientSecret } from './.credentials';
+import { Buffer } from 'buffer';
 
 function App() {
+  const client_id = YourClientId;
+  const client_secret = YourClientSecret;
+
+  async function getToken() {
+    const response = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      body: new URLSearchParams({
+        grant_type: 'client_credentials',
+      }),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization:
+          'Basic ' +
+          Buffer.from(client_id + ':' + client_secret).toString('base64'),
+      },
+    });
+
+    return await response.json();
+  }
+
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
       <h1>Hello world!</h1>
     </>
   );
