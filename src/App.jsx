@@ -14,6 +14,7 @@ function App() {
   const [accessToken, setAccessToken] = useState('');
   const [tracks, setTracks] = useState([]);
 
+  // make it a hook.
   async function getToken() {
     const response = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
