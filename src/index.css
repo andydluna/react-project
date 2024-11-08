@@ -2,24 +2,15 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  --blue: #bfecff;
+  --orange: #ff9f45c2;
+  --yellow: #fdfbce;
+  --pink: #ffccea;
+  --deep-blue: #151b31;
+  --x: #fff2cc78;
 }
 
 body {
@@ -28,10 +19,37 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(
+    300deg,
+    var(--yellow),
+    var(--pink),
+    var(--orange)
+  );
+  background-size: 180% 180%;
+  animation: gradient-animation 10s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+input {
+  background-color: white;
+  border-color: black;
+  border-radius: 8px;
+  text-align: center;
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 4em;
   line-height: 1.1;
 }
 
@@ -42,9 +60,14 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: white;
   cursor: pointer;
   transition: border-color 0.25s;
+}
+
+.preview {
+  display: grid;
+  margin-top: 3rem;
 }
 
 .search {
@@ -64,20 +87,25 @@ button {
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 6px;
-  background-color: lightpink;
+  background: linear-gradient(
+    300deg,
+    var(--orange),
+    var(--pink),
+    var(--yellow)
+  );
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: black;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -88,4 +116,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
