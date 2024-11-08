@@ -7,12 +7,14 @@ import Search from './components/search.jsx';
 import Song from './components/song.jsx';
 import WebPlayback from './components/webplayback.jsx';
 import Login from './components/login.jsx';
+import SongPreview from './components/songpreview.jsx';
 
 function App() {
   const client_id = YourClientId;
   const client_secret = YourClientSecret;
   const [accessToken, setAccessToken] = useState('');
   const [tracks, setTracks] = useState([]);
+  const [track, setTrack] = useState('');
 
   // make it a hook.
   async function getToken() {
@@ -50,18 +52,25 @@ function App() {
     }
   };
 
+  const searchSong = (ID) => {
+    setTrack(ID);
+  };
+
   getToken().then((res) => setAccessToken(res));
 
   return (
     <div>
       <h1>Mood Based Player</h1>
-      {/* { (token === '') ? <Login/> : <WebPlayback token={token} /> }*/}
       <Search onSearch={searchTracks} />
-      <div className="songs">
-        {tracks.map((track) => (
-          <Song track={track} key={track.id}></Song>
-        ))}
-      </div>
+      {track === '' ? (
+        <div className="songs">
+          {tracks.map((track) => (
+            <Song track={track} key={track.id} onPlay={searchSong}></Song>
+          ))}
+        </div>
+      ) : (
+        <SongPreview ID={track} />
+      )}
     </div>
   );
 }

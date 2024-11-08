@@ -1,4 +1,8 @@
 export default function Song(props) {
+  function handleClick() {
+    props.onPlay(props.track.id);
+  }
+
   return (
     <div className="song">
       <img
@@ -7,7 +11,7 @@ export default function Song(props) {
         width="100"
       />
       <p>{props.track.name}</p>
-      <button>Play</button>
+      <button onClick={handleClick}>Play</button>
     </div>
   );
 }
