@@ -97,6 +97,17 @@ button {
   );
 }
 
+.song .h5 {
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.song img {
+  margin: 10px 0px 10px 0px;
+}
+
 button:hover {
   border-color: black;
 }

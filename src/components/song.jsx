@@ -1,3 +1,7 @@
+import { CardBody, CardFooter } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 export default function Song(props) {
   function handleClick() {
     props.onPlay(props.track.id);
@@ -5,13 +9,23 @@ export default function Song(props) {
 
   return (
     <div className="song">
-      <img
-        src={props.track.album.images[0].url}
-        alt="album cover"
-        width="100"
-      />
-      <p>{props.track.name}</p>
-      <button onClick={handleClick}>Play</button>
+      <Card>
+        <Card.Title>{props.track.name}</Card.Title>
+        <CardBody>
+          <Card.Img
+            variant="top"
+            src={props.track.album.images[0].url}
+            width="100"
+            alt="album cover"
+          />
+        </CardBody>
+
+        <CardFooter>
+          <Button variant="primary" onClick={handleClick}>
+            Play
+          </Button>
+        </CardFooter>
+      </Card>
     </div>
   );
 }
