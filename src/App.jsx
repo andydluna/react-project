@@ -5,9 +5,10 @@ import { YourClientSecret } from './.credentials';
 import { Buffer } from 'buffer';
 import Search from './components/search.jsx';
 import Song from './components/song.jsx';
-import WebPlayback from './components/webplayback.jsx';
-import Login from './components/login.jsx';
+// import WebPlayback from './components/webplayback.jsx';
+// import Login from './components/login.jsx';
 import SongPreview from './components/songpreview.jsx';
+import DisplayMoods from './components/displaymoods.jsx';
 
 function App() {
   const client_id = YourClientId;
@@ -64,6 +65,7 @@ function App() {
   return (
     <div>
       <h1>Mood Based Player</h1>
+      <DisplayMoods />
       <Search onSearch={searchTracks} />
       {track === '' ? (
         <div className="songs">

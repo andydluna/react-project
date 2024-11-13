@@ -97,6 +97,14 @@ button {
   );
 }
 
+.moods {
+  margin: 20px 0 20px 0;
+}
+
+.moods button {
+  margin: 5px 5px 5px 5px;
+}
+
 .song .h5 {
   width: 180px;
   white-space: nowrap;
