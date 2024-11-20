@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { YourClientId } from './.credentials';
 import { YourClientSecret } from './.credentials';
 import { Buffer } from 'buffer';
@@ -74,7 +74,7 @@ function App() {
           ))}
         </div>
       ) : (
-        <SongPreview ID={track} />
+        <SongPreview ID={track} type={'track'} />
       )}
     </div>
   );
